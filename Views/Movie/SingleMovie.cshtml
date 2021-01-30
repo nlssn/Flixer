@@ -1,0 +1,13 @@
+﻿@model Flixer.Models.Movie
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<ul>
+    <li><strong>ID:</strong> @Model.Id</li>
+    <li><strong>Title:</strong> @Model.Title</li>
+    <li><strong>Year:</strong> @Model.Year</li>
+</ul>

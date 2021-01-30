@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Flixer.Models.Movie>
+
+@{
     ViewData["Title"] = "Movies";
 }
 
@@ -6,5 +8,10 @@
 <p>This page shows all of the movies.</p>
 
 <div class="movies">
-    @ViewData["json"]
+    @foreach (var movie in Model)
+    {
+        <div class="movie-item">
+            <p>@Html.ActionLink(movie.Title, "SingleMovie", new { id = movie.Id })</p>
+        </div>
+    }
 </div>
