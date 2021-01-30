@@ -16,10 +16,11 @@ namespace Flixer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add MVC service
             services.AddControllersWithViews();
 
+            // Add session service with distributed memory cache
             services.AddDistributedMemoryCache();
-
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(30);
