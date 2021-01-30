@@ -53,6 +53,12 @@ namespace Flixer
                     pattern: "{action}",
                     defaults: new { controller = "Home", action = "Index" }
                 );
+
+                endpoints.MapControllerRoute(
+                    name: "movie",
+                    pattern: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Movie", action = "Index" }
+                );
             });
         }
     }
