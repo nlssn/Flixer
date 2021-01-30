@@ -12,6 +12,12 @@ namespace Flixer.Models
         public bool Watched { get; set; }
         public int Score { get; set; }
 
+        // Parameterless constructor
+        public Movie()
+        {
+            
+        }
+
         // Constructor
         public Movie(int id, string title, string genre, string year, bool watched, int score)
         {
