@@ -20,7 +20,7 @@ namespace Flixer.Controllers
             // Store the data in session storage for later use
             HttpContext.Session.SetString("movies", data);
 
-            // Deserialize the data and return it with the view
+            // Deserialize the data and pass it to the view
             var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
             return View(movies);
         }
@@ -28,8 +28,11 @@ namespace Flixer.Controllers
         [Route("Movie/{id}")]
         public IActionResult SingleMovie(int id)
         {
+            // Get data from session storage and deserialize it
             string data = HttpContext.Session.GetString("movies");
             var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
+
+            // Find the movie with the given ID, and pass it to the view
             Movie m = movies.Find(x => x.Id == id);
             return View(m);
         }
