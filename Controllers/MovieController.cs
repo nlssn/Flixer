@@ -8,6 +8,7 @@ namespace Flixer.Controllers
 {
     public class MovieController : Controller
     {
+        [Route("Movies")]
         public IActionResult Index()
         {
             return View();
