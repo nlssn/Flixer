@@ -1,0 +1,28 @@
+﻿@using Flixer.Models
+ 
+@{
+    ViewData["Title"] = "New Movie Added!";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p>You added a new movie. Here's the info you provided:</p>
+
+@{
+    var movie = ViewBag.LatestMovie as Movie;
+}
+
+<ul>
+    <li>ID: @movie.Id</li>
+    <li>Titel: @movie.Title</li>
+    <li>Genre: @movie.Genre</li>
+    <li>Year: @movie.Year</li>
+    @if (movie.Watched)
+    {
+        <li>Watched: Yes :)</li>
+    }
+    else
+    {
+        <li>Watched: No :(</li>
+    }
+    <li>Score: @movie.Score</li>
+</ul>
