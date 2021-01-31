@@ -15,6 +15,8 @@ namespace Flixer.Controllers
 
         public IActionResult About()
         {
+            ViewData["Str1"] = "This is a website created by Johannes Nilsson as a part of a university course called \"ASP.NET med C#\".";
+            ViewBag.Str2 = "It's built with the purpose of learning ASP.NET Core MVC.";
             return View();
         }
     }
