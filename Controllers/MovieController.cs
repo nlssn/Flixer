@@ -24,9 +24,8 @@ namespace Flixer.Controllers
         [Route("Movie/Details/{id}")]
         public IActionResult SingleMovie(int id)
         {
-            // Get data from session storage and deserialize it
-            string data = HttpContext.Session.GetString("movies");
-            var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
 
             // Find the movie with the given ID, and pass it to the view
             Movie m = movies.Find(x => x.Id == id);
