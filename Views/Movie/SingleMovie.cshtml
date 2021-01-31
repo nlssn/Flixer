@@ -9,5 +9,15 @@
 <ul>
     <li><strong>ID:</strong> @Model.Id</li>
     <li><strong>Title:</strong> @Model.Title</li>
+    <li><strong>Genre:</strong> @Model.Genre</li>
     <li><strong>Year:</strong> @Model.Year</li>
+    @if (@Model.Watched)
+    {
+        <li><strong>Watched:</strong> Yes</li>
+    }
+    else
+    {
+        <li><strong>Watched:</strong> No</li>
+    }
+    <li><strong>Score:</strong> @Model.Score</li>
 </ul>
