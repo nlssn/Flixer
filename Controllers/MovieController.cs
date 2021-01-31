@@ -100,10 +100,15 @@ namespace Flixer.Controllers
             return View();
         }
 
-        public string GetData()
+        public List<Movie> GetData()
         {
-            // Open the file and return all of its contents
-            string data = System.IO.File.ReadAllText("movies.json");
+            // Open the JSON-file and read all of its contents
+            string json = System.IO.File.ReadAllText("movies.json");
+
+            // Deserialize the JSON and cast as List of Movie objects
+            var data = JsonConvert.DeserializeObject<List<Movie>>(json);
+
+            // Return the data
             return data;
         }
 
