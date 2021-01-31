@@ -14,23 +14,18 @@ namespace Flixer.Controllers
         [Route("Movies")]
         public IActionResult Index()
         {
-            // Retrieve the data from the JSON-file
-            string data = GetData();
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
 
-            // Store the data in session storage for later use
-            HttpContext.Session.SetString("movies", data);
-
-            // Deserialize the data and pass it to the view
-            var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
+            // Return the view and pass the list to it
             return View(movies);
         }
 
         [Route("Movie/Details/{id}")]
         public IActionResult SingleMovie(int id)
         {
-            // Get data from session storage and deserialize it
-            string data = HttpContext.Session.GetString("movies");
-            var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
 
             // Find the movie with the given ID, and pass it to the view
             Movie m = movies.Find(x => x.Id == id);
@@ -48,27 +43,10 @@ namespace Flixer.Controllers
         {
             try
             {
-                /* TODO:
-                 * Move most of this code over to the SaveData method
-                 */
+                // Save the new movie to file
+                SaveData(m);
 
-                // Get data from session storage and deserialize it
-                string data = HttpContext.Session.GetString("movies");
-                var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
-
-                // Add the new movie to the list
-                movies.Add(m);
-
-                // Serialize the updated data
-                var updatedMovies = JsonConvert.SerializeObject(movies);
-
-                // Overwrite the session storage
-                HttpContext.Session.SetString("movies", updatedMovies);
-
-                // Save data to file
-                SaveData(updatedMovies);
-
-                // Save the new movie in session storage
+                // Save the new movie in session storage as a serialized JSON-string
                 var newMovie = JsonConvert.SerializeObject(m);
                 HttpContext.Session.SetString("newMovie", newMovie);
 
@@ -84,11 +62,6 @@ namespace Flixer.Controllers
 
         public IActionResult Created()
         {
-            /* TODO: Is it possible to pass the data between controllers
-             * in a simpler way? It feels so ugly to serialize and then
-             * deserialize constantly....
-             */
-
             // Get the newly added movie from session storage
             string newMovie = HttpContext.Session.GetString("newMovie");
 
@@ -100,17 +73,31 @@ namespace Flixer.Controllers
             return View();
         }
 
-        public string GetData()
+        public List<Movie> GetData()
         {
-            // Open the file and return all of its contents
-            string data = System.IO.File.ReadAllText("movies.json");
+            // Open the JSON-file and read all of its contents
+            string json = System.IO.File.ReadAllText("movies.json");
+
+            // Deserialize the JSON and cast as List of Movie objects
+            var data = JsonConvert.DeserializeObject<List<Movie>>(json);
+
+            // Return the data
             return data;
         }
 
-        public void SaveData(string data)
+        public void SaveData(Movie m)
         {
-            System.IO.File.WriteAllText("movies.json", data);
-            return;
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
+
+            // Add the new movie to the list
+            movies.Add(m);
+
+            // Serialize the updated data
+            var updatedMovies = JsonConvert.SerializeObject(movies);
+
+            // Write the updated data to file
+            System.IO.File.WriteAllText("movies.json", updatedMovies);
         }
     }
 }
