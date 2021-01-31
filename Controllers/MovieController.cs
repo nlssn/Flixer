@@ -14,14 +14,10 @@ namespace Flixer.Controllers
         [Route("Movies")]
         public IActionResult Index()
         {
-            // Retrieve the data from the JSON-file
-            string data = GetData();
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
 
-            // Store the data in session storage for later use
-            HttpContext.Session.SetString("movies", data);
-
-            // Deserialize the data and pass it to the view
-            var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
+            // Return the view and pass the list to it
             return View(movies);
         }
 
