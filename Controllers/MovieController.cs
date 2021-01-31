@@ -46,8 +46,14 @@ namespace Flixer.Controllers
                 // Assign a unique ID for the new movie
                 m.Id = FindNextId();
 
+                // Get the stored movies from the JSON-file
+                List<Movie> movies = GetData();
+
+                // Add the new movie to the list
+                movies.Add(m);
+
                 // Save the new movie to file
-                SaveData(m);
+                SaveData(movies);
 
                 // Save the new movie in session storage as a serialized JSON-string
                 var newMovie = JsonConvert.SerializeObject(m);
@@ -76,6 +82,25 @@ namespace Flixer.Controllers
             return View();
         }
 
+        [Route("Movie/Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
+
+            // Find the movie with the given ID, and pass it to the view
+            Movie m = movies.Find(x => x.Id == id);
+
+            // Remove the matching movie
+            movies.Remove(m);
+
+            // Save updated list of movies to file
+            SaveData(movies);
+
+            // Return view
+            return View();
+        }
+
         public List<Movie> GetData()
         {
             // Open the JSON-file and read all of its contents
@@ -88,14 +113,8 @@ namespace Flixer.Controllers
             return data;
         }
 
-        public void SaveData(Movie m)
+        public void SaveData(List<Movie> movies)
         {
-            // Get the stored movies from the JSON-file
-            List<Movie> movies = GetData();
-
-            // Add the new movie to the list
-            movies.Add(m);
-
             // Serialize the updated data
             var updatedMovies = JsonConvert.SerializeObject(movies);
 
