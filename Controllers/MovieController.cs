@@ -43,7 +43,7 @@ namespace Flixer.Controllers
         {
             try
             {
-                // Save data to file
+                // Save the new movie to file
                 SaveData(m);
 
                 // Save the new movie in session storage as a serialized JSON-string
