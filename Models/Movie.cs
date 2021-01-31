@@ -10,7 +10,7 @@ namespace Flixer.Models
         public string Genre { get; set; }
         public string Year { get; set; }
         public bool Watched { get; set; }
-        public int Score { get; set; }
+        public float Score { get; set; }
 
         // Parameterless constructor
         public Movie()
