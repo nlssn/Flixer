@@ -39,9 +39,9 @@ namespace Flixer.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNew([FromForm]Movie m)
+        public IActionResult AddNew([FromForm] Movie m)
         {
-            try
+            if (ModelState.IsValid)
             {
                 // Assign a unique ID for the new movie
                 m.Id = FindNextId();
@@ -62,7 +62,7 @@ namespace Flixer.Controllers
                 // Redirect to Created
                 return RedirectToAction("Created");
             }
-            catch
+            else
             {
                 return View();
             }
