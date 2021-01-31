@@ -2,6 +2,9 @@
   {
     "Id": 1,
     "Title": "Sneakers",
-    "Year":  "1992"
+    "Genre":  "Comedy, Crime, Drama",
+    "Year": "1992",
+    "Watched":  true,
+    "Score":  7.1
   }
 ]
