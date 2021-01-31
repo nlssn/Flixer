@@ -43,27 +43,10 @@ namespace Flixer.Controllers
         {
             try
             {
-                /* TODO:
-                 * Move most of this code over to the SaveData method
-                 */
-
-                // Get data from session storage and deserialize it
-                string data = HttpContext.Session.GetString("movies");
-                var movies = JsonConvert.DeserializeObject<List<Movie>>(data);
-
-                // Add the new movie to the list
-                movies.Add(m);
-
-                // Serialize the updated data
-                var updatedMovies = JsonConvert.SerializeObject(movies);
-
-                // Overwrite the session storage
-                HttpContext.Session.SetString("movies", updatedMovies);
-
                 // Save data to file
-                SaveData(updatedMovies);
+                SaveData(m);
 
-                // Save the new movie in session storage
+                // Save the new movie in session storage as a serialized JSON-string
                 var newMovie = JsonConvert.SerializeObject(m);
                 HttpContext.Session.SetString("newMovie", newMovie);
 
@@ -79,11 +62,6 @@ namespace Flixer.Controllers
 
         public IActionResult Created()
         {
-            /* TODO: Is it possible to pass the data between controllers
-             * in a simpler way? It feels so ugly to serialize and then
-             * deserialize constantly....
-             */
-
             // Get the newly added movie from session storage
             string newMovie = HttpContext.Session.GetString("newMovie");
 
@@ -107,10 +85,19 @@ namespace Flixer.Controllers
             return data;
         }
 
-        public void SaveData(string data)
+        public void SaveData(Movie m)
         {
-            System.IO.File.WriteAllText("movies.json", data);
-            return;
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
+
+            // Add the new movie to the list
+            movies.Add(m);
+
+            // Serialize the updated data
+            var updatedMovies = JsonConvert.SerializeObject(movies);
+
+            // Write the updated data to file
+            System.IO.File.WriteAllText("movies.json", updatedMovies);
         }
     }
 }
