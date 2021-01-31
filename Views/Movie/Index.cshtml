@@ -5,7 +5,10 @@
 }
 
 <h2>@ViewData["Title"]</h2>
-<p>This page shows all of the movies.</p>
+<p>
+    This page shows all of the movies.<br/>
+    You can also @Html.ActionLink("Add a new movie", "AddNew") if you want.
+</p>
 
 <div class="movies">
     @foreach (var movie in Model)
