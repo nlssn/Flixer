@@ -43,6 +43,9 @@ namespace Flixer.Controllers
         {
             try
             {
+                // Assign a unique ID for the new movie
+                m.Id = FindNextId();
+
                 // Save the new movie to file
                 SaveData(m);
 
@@ -98,6 +101,15 @@ namespace Flixer.Controllers
 
             // Write the updated data to file
             System.IO.File.WriteAllText("movies.json", updatedMovies);
+        }
+
+        public int FindNextId()
+        {
+            // Get the stored movies from the JSON-file
+            List<Movie> movies = GetData();
+
+            // Return the current amount of movies + 1
+            return movies.Count() + 1;
         }
     }
 }
