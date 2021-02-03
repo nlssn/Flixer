@@ -17,7 +17,7 @@ namespace Flixer.Models
         public string Genre { get; set; }
 
         [Required]
-        public string Year { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         public bool Watched { get; set; } = false;
 
@@ -31,12 +31,12 @@ namespace Flixer.Models
         }
 
         // Constructor
-        public Movie(int id, string title, string genre, string year, bool watched, int score)
+        public Movie(int id, string title, string genre, string releaseDate, bool watched, int score)
         {
             this.Id = id;
             this.Title = title;
             this.Genre = genre;
-            this.Year = year;
+            this.ReleaseDate = DateTime.Parse(releaseDate);
             this.Watched = watched;
             this.Score = score;
         }

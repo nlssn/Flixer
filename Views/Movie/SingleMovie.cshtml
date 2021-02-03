@@ -10,7 +10,7 @@
     <li><strong>ID:</strong> @Model.Id</li>
     <li><strong>Title:</strong> @Model.Title</li>
     <li><strong>Genre:</strong> @Model.Genre</li>
-    <li><strong>Year:</strong> @Model.Year</li>
+    <li><strong>Release Date:</strong> @Model.ReleaseDate.ToString("d")</li>
     @if (@Model.Watched)
     {
         <li><strong>Watched:</strong> Yes</li>
