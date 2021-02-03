@@ -1,10 +1,1 @@
-[
-  {
-    "Id": 1,
-    "Title": "Sneakers",
-    "Genre":  "Comedy, Crime, Drama",
-    "Year": "1992",
-    "Watched":  true,
-    "Score":  7.1
-  }
-]
+[{"Id":1,"Title":"Sneakers","Genre":"Comedy, Crime, Drama","ReleaseDate":"2021-03-02T18:45:00","Watched":true,"Score":7},{"Id":2,"Title":"Swordfish","Genre":"Action, Crime, Thriller","ReleaseDate":"2001-09-14T00:00:00","Watched":true,"Score":3},{"Id":3,"Title":"Hackers","Genre":"Comedy, Crime, Drama","ReleaseDate":"1995-09-15T00:00:00","Watched":true,"Score":6}]
