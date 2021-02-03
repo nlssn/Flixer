@@ -17,6 +17,7 @@ namespace Flixer.Models
         public string Genre { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
 
         public bool Watched { get; set; } = false;
