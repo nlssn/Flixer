@@ -1,31 +1,35 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flixer &middot; @ViewData["Title"] </title>
-    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/global.min.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <h1>Flixer</h1>
-        <nav>
-            <ul>
-                <li>
-                    <a asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li>
-                    <a asp-controller="Movie" asp-action="Index">Movies</a>
-                </li>
-                <li>
-                    <a asp-controller="Home" asp-action="About">About</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        @RenderBody()
-    </main>
-    <script src="~/js/script.js"></script>
+    <div class="container">
+
+        <header class="site-header">
+            <h1 class="site-logo">
+                <a asp-controller="Home" asp-action="Index">Flixer</a>
+            </h1>
+            <nav class="nav-primary">
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Movie" asp-action="Index">Movies</a></li>
+                    <li><a asp-controller="Home" asp-action="About">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="page-content">
+            @RenderBody()
+        </main>
+
+        <footer class="site-footer">
+            Flixer | Built by Johannes Nilsson
+        </footer>
+
+    </div><!-- /.container -->
     @RenderSection("Scripts", required: false)
 </body>
 </html>
