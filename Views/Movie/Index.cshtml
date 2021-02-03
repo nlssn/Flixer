@@ -6,15 +6,15 @@
 
 <h2>@ViewData["Title"]</h2>
 <p>
-    This page shows all of the movies.<br/>
-    You can also @Html.ActionLink("Add a new movie", "AddNew") if you want.
+    This page shows all of the movies. Click on one to read more about it.<br/>
+    You can also @Html.ActionLink("Add a new movie", "AddNew", new { }, new { @class="btn btn-success"}) if you want.
 </p>
 
-<div class="movies">
+<ul class="movies">
     @foreach (var movie in Model)
     {
-        <div class="movie-item">
+        <li class="movie-item">
             <p>@Html.ActionLink(movie.Title, "SingleMovie", new { id = movie.Id })</p>
-        </div>
+        </li>
     }
-</div>
+</ul>

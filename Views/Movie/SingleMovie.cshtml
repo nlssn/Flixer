@@ -22,5 +22,5 @@
     <li><strong>Score:</strong> @Model.Score</li>
 </ul>
 
-@Html.ActionLink("Delete Movie", "Delete", new { Id = Model.Id })
+@Html.ActionLink("Delete Movie", "Delete", new { Id = Model.Id }, new { @class = "btn btn-del" })
 <partial name="_BackLinkPartial" />
