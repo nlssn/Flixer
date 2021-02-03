@@ -7,19 +7,15 @@
 <h2>@ViewData["Title"]</h2>
 
 <ul>
-    <li><strong>ID:</strong> @Model.Id</li>
-    <li><strong>Title:</strong> @Model.Title</li>
-    <li><strong>Genre:</strong> @Model.Genre</li>
-    <li><strong>Release Date:</strong> @Model.ReleaseDate.ToString("d")</li>
-    @if (@Model.Watched)
-    {
-        <li><strong>Watched:</strong> Yes</li>
+    <li><strong>@Html.DisplayNameFor(model => model.Id):</strong> @Html.DisplayFor(model => model.Id)</li>
+    <li><strong>@Html.DisplayNameFor(model => model.Title):</strong> @Html.DisplayFor(model => model.Title)</li>
+    <li><strong>@Html.DisplayNameFor(model => model.Genre):</strong> @Html.DisplayFor(model => model.Genre)</li>
+    <li><strong>@Html.DisplayNameFor(model => model.ReleaseDate):</strong> @Html.DisplayFor(model => model.ReleaseDate)</li>
+    @{
+        ViewData["Watched"] = Model.Watched ? "Yes" : "No";
     }
-    else
-    {
-        <li><strong>Watched:</strong> No</li>
-    }
-    <li><strong>Score:</strong> @Model.Score</li>
+    <li><strong>Watched:</strong> @ViewData["Watched"]</li>
+    <li><strong>@Html.DisplayNameFor(model => model.Score):</strong> @Html.DisplayFor(model => model.Score)</li>
 </ul>
 
 @Html.ActionLink("Delete Movie", "Delete", new { Id = Model.Id }, new { @class = "btn btn-del" })
