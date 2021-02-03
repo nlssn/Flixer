@@ -12,19 +12,19 @@
 }
 
 <ul>
-    <li>ID: @movie.Id</li>
-    <li>Titel: @movie.Title</li>
-    <li>Genre: @movie.Genre</li>
-    <li>Year: @movie.Year</li>
+    <li><strong>ID:</strong> @movie.Id</li>
+    <li><strong>Title:</strong> @movie.Title</li>
+    <li><strong>Genre:</strong> @movie.Genre</li>
+    <li><strong>Year:</strong> @movie.Year</li>
     @if (movie.Watched)
     {
-        <li>Watched: Yes :)</li>
+        <li><strong>Watched:</strong> Yes</li>
     }
     else
     {
-        <li>Watched: No :(</li>
+        <li><strong>Watched:</strong> No</li>
     }
-    <li>Score: @movie.Score</li>
+    <li><strong>Score:</strong> @movie.Score</li>
 </ul>
 
 <partial name="_BackLinkPartial" />
