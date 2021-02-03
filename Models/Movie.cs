@@ -18,6 +18,7 @@ namespace Flixer.Models
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
         public bool Watched { get; set; } = false;
